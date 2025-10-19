@@ -87,7 +87,7 @@
 
 pub extern crate imgui_sys as sys;
 
-use std::cell;
+use std::cell::{self, UnsafeCell};
 use std::os::raw::c_char;
 
 pub use self::clipboard::*;
@@ -277,6 +277,12 @@ impl Ui {
     #[doc(alias = "GetIO")]
     pub fn io(&self) -> &Io {
         unsafe { &*(sys::igGetIO() as *const Io) }
+    }
+
+    pub fn new(buffer_max_len: usize) -> Self {
+        Ui {
+            buffer: UnsafeCell::new(UiBuffer::new(buffer_max_len)),
+        }
     }
 
     /// Returns an immutable reference to the font atlas.
