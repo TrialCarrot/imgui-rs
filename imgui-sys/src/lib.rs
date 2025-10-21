@@ -1,4 +1,5 @@
 #![no_std]
+#![allow(unpredictable_function_pointer_comparisons)]
 
 cfg_if::cfg_if! {
     if #[cfg(feature = "wasm")] {

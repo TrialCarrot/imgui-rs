@@ -1,3 +1,5 @@
+#![allow(unpredictable_function_pointer_comparisons)]
+
 use std::ffi::{CStr, CString};
 use std::fmt;
 use std::os::raw::c_char;
